@@ -31,6 +31,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
         SYSTEM_FONT = new JLabel().getFont().getFontName();
 
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
         setSize(400, 300);
@@ -172,7 +174,7 @@ public class MainWindow extends JFrame implements ActionListener {
     public void updateTextBoxes(){
         velocityText.setText(Double.toString(main.getValue("V")));
         initialVText.setText(Double.toString(main.getValue("U")));
-        distanceText.setText(Double.toString(main.getValue("U")));
+        distanceText.setText(Double.toString(main.getValue("S")));
         timeText.setText(Double.toString(main.getValue("T")));
         accelerationText.setText(Double.toString(main.getValue("A")));
     }
