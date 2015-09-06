@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 
@@ -53,55 +51,38 @@ public class MainWindow extends JFrame implements ActionListener {
         setVisible(true);
 
 
-        accelerationText = new JTextField("Acceleration");
+        accelerationText = new JTextField(10);
+        TextPrompt tpAcceleration = new TextPrompt("Acceleration", accelerationText);
+        tpAcceleration.setShow(TextPrompt.Show.FOCUS_LOST);
         accelerationText.setPreferredSize(new Dimension(100, 30));
-        accelerationText.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                accelerationText.setText("");
-            }
-        });
         add(accelerationText);
 
-        velocityText = new JTextField("Final velocity");
+
+
+        velocityText = new JTextField(10);
+        TextPrompt tpVelocity = new TextPrompt("Velocity", velocityText);
+        tpVelocity.setShow(TextPrompt.Show.FOCUS_LOST);
         velocityText.setPreferredSize(new Dimension(100, 30));
-        velocityText.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                velocityText.setText("");
-            }
-        });
         add(velocityText);
 
-        initialVText = new JTextField("Initial velocity");
+        initialVText = new JTextField(10);
         initialVText.setPreferredSize(new Dimension(100, 30));
-        initialVText.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                initialVText.setText("");
-            }
-        });
+        TextPrompt tpInitialV = new TextPrompt("Initial Velocity", initialVText);
+        tpInitialV.setShow(TextPrompt.Show.FOCUS_LOST);
         add(initialVText);
 
-        distanceText = new JTextField("Distance");
+        distanceText = new JTextField(10);
         distanceText.setPreferredSize(new Dimension(100, 30));
-        distanceText.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                distanceText.setText("");
-            }
-        });
+        TextPrompt tpDistance = new TextPrompt("Distance", distanceText);
+        tpDistance.setShow(TextPrompt.Show.FOCUS_LOST);
         add(distanceText);
 
-        timeText = new JTextField("Time");
+        timeText = new JTextField(10);
         timeText.setPreferredSize(new Dimension(100, 30));
-        timeText.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                timeText.setText("");
-            }
-        });
+        TextPrompt tpTime = new TextPrompt("Time", timeText);
+        tpTime.setShow(TextPrompt.Show.FOCUS_LOST);
         add(timeText);
+
 
         postTitle = textAreaProperties(new JTextPane());
 
@@ -150,7 +131,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
             // Pass the parse values to our main class to be calculated.
             main.calculate();
-            System.out.print("Finished calculating. Updating text boxes.");
             updateTextBoxes();
 
         } else if(e.getSource() == resetButton){
