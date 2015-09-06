@@ -131,11 +131,16 @@ public class MainWindow extends JFrame implements ActionListener {
             updateTextBoxes();
 
         } else if(e.getSource() == resetButton){
-            velocityText.setText("Final Velocity:");
-            initialVText.setText("Initial Velocity:");
-            distanceText.setText(("Distance:"));
-            accelerationText.setText("Acceleration:");
-            timeText.setText("Time:");
+            TextPrompt tpTime = new TextPrompt("Time", timeText);
+            tpTime.setShow(TextPrompt.Show.FOCUS_LOST);
+            TextPrompt tpDistance = new TextPrompt("Distance", distanceText);
+            tpDistance.setShow(TextPrompt.Show.FOCUS_LOST);
+            TextPrompt tpInitialV = new TextPrompt("Initial Velocity", initialVText);
+            tpInitialV.setShow(TextPrompt.Show.FOCUS_LOST);
+            TextPrompt tpAcceleration = new TextPrompt("Acceleration", accelerationText);
+            tpAcceleration.setShow(TextPrompt.Show.FOCUS_LOST);
+            TextPrompt tpVelocity = new TextPrompt("Velocity", velocityText);
+            tpVelocity.setShow(TextPrompt.Show.FOCUS_LOST);
         }
     }
 
