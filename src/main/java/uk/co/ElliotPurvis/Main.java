@@ -1,6 +1,7 @@
 package uk.co.ElliotPurvis;
 
 import uk.co.ElliotPurvis.equations.*;
+import uk.co.ElliotPurvis.exceptions.InsufficientValuesException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,13 +41,11 @@ public class Main {
         return window;
     }
 
-
     /**
      * Non static main
      *
      */
     private void setup() {
-
 
         values = new HashMap<String, Double>();
         values.put("V", null);
@@ -72,14 +71,23 @@ public class Main {
         });
     }
 
+    public void newErrorWindow(String title, String errorMessage){
+        ErrorWindow errorWindow = new ErrorWindow(title,errorMessage);
+        setupDefaultWindow(errorWindow);
+        // Override defaults set in setupDefaultWindow, we want to close only this window on exit.
+        errorWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+    }
+
 
     /**
      * Use the values defined in HashMap to decide which equation is relevant
      */
-    public void calculate() {
+    public void calculate() throws InsufficientValuesException {
 
         // Stores the keys to reference the null values in HashMap<Double> values;
         ArrayList<String> nullvalues = new ArrayList<String>();
+
 
 
         for(String tempKey : values.keySet()){
@@ -89,11 +97,11 @@ public class Main {
             }
         }
 
-        if(nullvalues.size() > 2){
-
-
-
+        if(nullvalues.size()>2){
+            newErrorWindow("Too many values!", "You've entered too many values to calculate. Please enter a maximum of two unknown values.");
+            throw new InsufficientValuesException();
         }
+
 
         nullValueLoop:
         for(String nullValueKey : nullvalues){
@@ -132,8 +140,6 @@ public class Main {
                 }
 
 
-                System.out.print("Using equation " + e.getIdentifier() + "\n");
-
                 Double returnValue = e.calculate(values, nullValueKey);
 
 
@@ -153,7 +159,6 @@ public class Main {
 
         Double calculate(HashMap<String, Double> passedValues, String nullValue);
 
-        String getIdentifier();
     }
 
     public void setValue(String s, Double x){
