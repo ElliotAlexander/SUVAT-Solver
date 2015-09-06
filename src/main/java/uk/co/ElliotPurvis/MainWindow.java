@@ -1,5 +1,7 @@
 package uk.co.ElliotPurvis;
 
+import uk.co.ElliotPurvis.exceptions.InsufficientValuesException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,30 +36,25 @@ public class MainWindow extends JFrame implements ActionListener {
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
         setSize(400, 300);
+        setVisible(true);
+
 
 
         titleMain = new JLabel("SUVAT Calculator");
-        titleMain.setSize(900, 50);
         titleMain.setFont(new Font(SYSTEM_FONT, Font.BOLD, 25));
         add(titleMain);
 
 
         subtitle = textAreaProperties(new JTextPane());
         subtitle.setText("This program will take a set of values, and calculate the unknowns.");
-        subtitle.setSize(400, 50);
+
         add(subtitle);
-
-
-        setVisible(true);
-
 
         accelerationText = new JTextField(10);
         TextPrompt tpAcceleration = new TextPrompt("Acceleration", accelerationText);
         tpAcceleration.setShow(TextPrompt.Show.FOCUS_LOST);
         accelerationText.setPreferredSize(new Dimension(100, 30));
         add(accelerationText);
-
-
 
         velocityText = new JTextField(10);
         TextPrompt tpVelocity = new TextPrompt("Velocity", velocityText);
@@ -83,17 +80,12 @@ public class MainWindow extends JFrame implements ActionListener {
         tpTime.setShow(TextPrompt.Show.FOCUS_LOST);
         add(timeText);
 
-
         postTitle = textAreaProperties(new JTextPane());
-
-
-        //  new Insets(Top, left, bottom, right);
+        // Order of arguements = new Insets(Top Inset, left Inset, bottom Inset, right);
         postTitle.setMargin(new Insets(10, 30, 10, 30));
-
         postTitle.setText("Enter the above values and press calculate");
         postTitle.setSize(400, 50);
         add(postTitle);
-
 
         calculateButton = new JButton("Calculate : ");
         calculateButton.setVisible(true);
@@ -130,7 +122,12 @@ public class MainWindow extends JFrame implements ActionListener {
             }
 
             // Pass the parse values to our main class to be calculated.
-            main.calculate();
+            try {
+                main.calculate();
+            } catch(InsufficientValuesException exception){
+                exception.printStackTrace();
+                return;
+            }
             updateTextBoxes();
 
         } else if(e.getSource() == resetButton){
@@ -146,8 +143,6 @@ public class MainWindow extends JFrame implements ActionListener {
         textArea.setEditable(false);
         textArea.setCursor(null);
         textArea.setOpaque(false);
-        textArea.setMargin(new Insets(10, 10, 10, 10));
-
         return textArea;
     }
 
