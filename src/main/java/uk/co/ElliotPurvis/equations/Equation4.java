@@ -20,10 +20,6 @@ public class Equation4 implements Main.Equation {
     }
 
 
-    public String getIdentifier(){
-        return "4";
-    }
-
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
 
 

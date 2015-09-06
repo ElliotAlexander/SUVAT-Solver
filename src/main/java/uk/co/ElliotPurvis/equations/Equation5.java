@@ -18,9 +18,6 @@ public class Equation5 implements Main.Equation {
     }
 
 
-    public String getIdentifier(){
-        return "5";
-    }
 
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
 

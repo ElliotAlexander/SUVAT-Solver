@@ -14,10 +14,6 @@ public class Equation1 implements Main.Equation {
      *  V = U + AT
      **/
 
-    public String getIdentifier(){
-        return "1";
-    }
-
     public String[] getRequiredChars() {
         return new String[]{"V", "U", "A", "T"};
     }

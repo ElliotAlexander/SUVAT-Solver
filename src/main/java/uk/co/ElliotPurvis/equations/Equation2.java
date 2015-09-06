@@ -18,9 +18,6 @@ public class Equation2 implements Main.Equation {
 
 
 
-    public String getIdentifier(){
-        return "2";
-    }
 
     public String[] getRequiredChars() {
         return new String[]{"S", "U", "A", "T"};

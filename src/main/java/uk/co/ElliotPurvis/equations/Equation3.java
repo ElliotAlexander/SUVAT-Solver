@@ -15,10 +15,6 @@ public class Equation3 implements Main.Equation {
      **/
 
 
-    public String getIdentifier(){
-        return "3";
-    }
-
     public String[] getRequiredChars() {
         return new String[]{"V", "U", "S", "T"};
     }
