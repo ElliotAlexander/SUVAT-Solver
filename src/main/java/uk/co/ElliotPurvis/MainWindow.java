@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 
@@ -51,22 +53,52 @@ public class MainWindow extends JFrame implements ActionListener {
 
         accelerationText = new JTextField("Acceleration");
         accelerationText.setPreferredSize(new Dimension(100, 30));
+        accelerationText.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                accelerationText.setText("");
+            }
+        });
         add(accelerationText);
 
         velocityText = new JTextField("Final velocity");
         velocityText.setPreferredSize(new Dimension(100, 30));
+        velocityText.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                velocityText.setText("");
+            }
+        });
         add(velocityText);
 
         initialVText = new JTextField("Initial velocity");
         initialVText.setPreferredSize(new Dimension(100, 30));
+        initialVText.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                initialVText.setText("");
+            }
+        });
         add(initialVText);
 
         distanceText = new JTextField("Distance");
         distanceText.setPreferredSize(new Dimension(100, 30));
+        distanceText.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                distanceText.setText("");
+            }
+        });
         add(distanceText);
 
         timeText = new JTextField("Time");
         timeText.setPreferredSize(new Dimension(100, 30));
+        timeText.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                timeText.setText("");
+            }
+        });
         add(timeText);
 
         postTitle = textAreaProperties(new JTextPane());
@@ -116,6 +148,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
             // Pass the parse values to our main class to be calculated.
             main.calculate();
+            System.out.print("Finished calculating. Updating text boxes.");
+            updateTextBoxes();
 
         } else if(e.getSource() == resetButton){
             velocityText.setText("Final Velocity:");
