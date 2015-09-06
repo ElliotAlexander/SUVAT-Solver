@@ -1,4 +1,4 @@
-package uk.co.ElliotPurvis;
+package uk.co.ElliotPurvis.JFrame;
 
 import javax.swing.*;
 import java.awt.*;
