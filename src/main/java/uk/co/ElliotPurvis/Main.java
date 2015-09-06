@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -15,10 +16,14 @@ public class Main {
     private ArrayList<Equation> registeredEquations;
     private HashMap<String, Double> values;
 
+    private final static Logger l = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
         Main mainClass = new Main();
         mainClass.setup();
+
+
+
 
     }
 
@@ -46,6 +51,7 @@ public class Main {
      *
      */
     private void setup() {
+
 
         values = new HashMap<String, Double>();
         values.put("V", null);
@@ -81,18 +87,14 @@ public class Main {
         for(String tempKey : values.keySet()){
             if(values.get(tempKey)==null){
                 nullvalues.add(tempKey);
-                System.out.print("Found null value " + tempKey + ", adding to array. \n");
+                l.info("Found null value " + tempKey + ", adding to array. \n");
             }
         }
 
-        System.out.print("Beginning loop of nullvalues, of size " + nullvalues.size() + "\n");
-
         nullValueLoop:
-        for(String nullvalue : nullvalues){
+        for(String nullValueKey : nullvalues){
 
-
-
-            System.out.print("Starting outerloop, iterating nullvalue " + nullvalue + "\n");
+            l.info("Starting outerloop, iterating nullvalue " + nullValueKey + "\n");
 
             EquationLoop:
             for(Equation e : registeredEquations){
@@ -105,36 +107,29 @@ public class Main {
                 for(String s : e.getRequiredChars()){
 
                     // If we have a null value and havent yet had one, all is good
-                    if(nullvalues.contains(s) && foundUnknown == false){
+                    if(nullvalues.contains(s) && foundUnknown == false && values.get(s)==null){
                         foundUnknown = true;
 
                     // We have more than one null value, abort
-                    } else if(foundUnknown == true && nullvalues.contains(s)){
+                    } else if(foundUnknown == true && nullvalues.contains(s) && values.get(s)==null){
                         continue EquationLoop;
                     }
                 }
 
 
-                System.out.print("Using equation " + e.getIdentifier() + "\n");
+                l.info("Using equation " + e.getIdentifier() + "\n");
 
-                System.out.print("Found suitable equation.\n");
+                Double returnValue = e.calculate(values, nullValueKey);
 
-                Double returnValue = e.calculate(values, nullvalue);
 
-                System.out.print("Calculated return value.\n");
+                values.put(nullValueKey, returnValue);
 
-                values.put(nullvalue, returnValue);
 
-                nullvalues.remove(nullvalue);
-
-                System.out.print("Added new value to values array\n");
-                System.out.print("Calculated value  " + nullvalue + " to " + values.get(nullvalue) + "\n");
+                l.info("Calculated value  " + nullValueKey + " to " + values.get(nullValueKey) + "\n");
                 break EquationLoop;
             }
-            System.out.print("Ending outerloop iteration \n");
+            continue nullValueLoop;
         }
-        mainWindow.updateTextBoxes();
-
     }
 
     // We use an interface to keep the equations together and easily iterate through multiple classes, as well as for readabillity.
