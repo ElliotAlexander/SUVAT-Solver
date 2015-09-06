@@ -32,7 +32,7 @@ public class Equation3 implements Main.Equation {
         } else if(nullValue == "S") {
             return ((passedValues.get("U") + passedValues.get("V")) / 2) * passedValues.get("T");
         } else if(nullValue == "T") {
-            return (passedValues.get("S") / ((passedValues.get("U") + passedValues.get("V")))/2);
+            return (passedValues.get("S") / (0.5 * (passedValues.get("U") + passedValues.get("V"))));
         }
         return null;
     }

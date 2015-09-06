@@ -28,11 +28,6 @@ public class Equation2 implements Main.Equation {
 
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
 
-        double s = passedValues.get("S");
-        double a = passedValues.get("A");
-        double u = passedValues.get("U");
-        double t = passedValues.get("T");
-
 
 
         if(nullValue == "S") {
