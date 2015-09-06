@@ -114,12 +114,8 @@ public class MainWindow extends JFrame implements ActionListener {
             HashMap<String, Double> finalValues = new HashMap<String, Double>();
 
             for (String key : tempValues.keySet()) {
-                try {
-                    Double x = Double.parseDouble(tempValues.get(key));
-                    finalValues.put(key, x);
-                } catch (NumberFormatException numberFormatException) {
-                    System.out.print("Couldn't load value " + key + " | Assigning to null \n");
-                }
+                Double x = Double.parseDouble(tempValues.get(key));
+                finalValues.put(key, x);
                 main.setValue(key, finalValues.get(key));
             }
 

@@ -1,5 +1,7 @@
 package uk.co.ElliotPurvis;
 
+import uk.co.ElliotPurvis.JFrame.ErrorWindow;
+import uk.co.ElliotPurvis.JFrame.MainWindow;
 import uk.co.ElliotPurvis.equations.*;
 import uk.co.ElliotPurvis.exceptions.InsufficientValuesException;
 
@@ -93,7 +95,6 @@ public class Main {
         for(String tempKey : values.keySet()){
             if(values.get(tempKey)==null){
                 nullvalues.add(tempKey);
-                System.out.print("Found null value " + tempKey + ", adding to array. \n");
             }
         }
 
@@ -105,8 +106,6 @@ public class Main {
 
         nullValueLoop:
         for(String nullValueKey : nullvalues){
-
-            System.out.print("Starting outerloop, iterating nullvalue " + nullValueKey + "\n");
 
             EquationLoop:
             for(Equation e : registeredEquations){
@@ -145,8 +144,6 @@ public class Main {
 
                 values.put(nullValueKey, returnValue);
 
-
-                System.out.print("Calculated value  " + nullValueKey + " to " + values.get(nullValueKey) + "\n");
                 break EquationLoop;
             }
             continue nullValueLoop;
