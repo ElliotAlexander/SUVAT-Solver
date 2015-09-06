@@ -35,7 +35,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
-        setSize(400, 300);
+        setSize(400, 270);
         setVisible(true);
 
 
