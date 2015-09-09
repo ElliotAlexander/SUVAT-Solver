@@ -18,9 +18,8 @@ public class Equation1 implements Main.Equation {
         return new String[]{"V", "U", "A", "T"};
     }
 
-    public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
-
-
+    public Double calculate(HashMap<String, Double> passedValues, String nullValue)
+    {
        if(nullValue == "V") {
             return (passedValues.get("U") + (passedValues.get("A")*passedValues.get("T")));
         } else if(nullValue == "U"){
