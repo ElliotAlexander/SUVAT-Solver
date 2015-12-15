@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class Main {
+public class Main {
 
 
     MainWindow mainWindow;
@@ -20,7 +20,6 @@ class Main {
 
     private Main main;
 
-    // Non-instantiable constructor.
     private Main(){
         values = new HashMap<String, Double>();
         values.put("V", null);
