@@ -120,16 +120,14 @@ public class Main {
                 boolean containsUnknown = false;
                 for(String s : e.getRequiredChars()){
 
-                    if(s == nullValueKey){
-                        containsUnknown = true;
-                    }
+                    containsUnknown = s==nullValueKey ? true : false;
 
                     // If we have a null value and havent yet had one, all is good
                     if(nullvalues.contains(s) && foundUnknown == false && values.get(s)==null){
                         foundUnknown = true;
 
                     // We have more than one null value, abort
-                    } else if(foundUnknown == true && nullvalues.contains(s) && values.get(s)==null){
+                    } else if(foundUnknown && nullvalues.contains(s) && values.get(s)==null){
                         continue EquationLoop;
                     }
                 }
