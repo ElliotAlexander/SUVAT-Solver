@@ -2,21 +2,24 @@ package uk.co.ElliotPurvis.JFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 /**
  * Created by Elliot on 06/09/2015.
  */
-public class ErrorWindow extends JFrame{
+public class ErrorWindow extends JFrame implements ActionListener {
 
     private final JTextPane errorLabel;
     private static String SYSTEM_FONT;
-    private Window w;
+    private JButton closeButton;
+    private final Window w;
 
     public ErrorWindow(String title, String errorMessage){
         super("Error! " + title);
 
         w = this;
-
 
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
@@ -35,6 +38,18 @@ public class ErrorWindow extends JFrame{
         errorLabel.setEditable(false);
         errorLabel.setCursor(null);
         errorLabel.setOpaque(false);
+
+        closeButton = new JButton("Close");
+        closeButton.addActionListener(this);
+        closeButton.setVisible(true);
+        add(closeButton);
+
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == closeButton){
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        }
 
     }
 }
