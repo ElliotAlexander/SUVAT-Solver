@@ -91,25 +91,26 @@ public class Main {
         ArrayList<String> nullvalues = new ArrayList<String>();
 
 
-
-        for(String tempKey : values.keySet()){
-            if(values.get(tempKey)==null){
+        for (String tempKey : values.keySet()) {
+            if (values.get(tempKey) == null) {
                 nullvalues.add(tempKey);
+                System.out.print("Found null value " + tempKey + ", adding to array. \n");
             }
         }
 
-        if(nullvalues.size()>2){
+        if (nullvalues.size() > 2) {
             newErrorWindow("Too many values!", "You've entered too many values to calculate. Please enter a maximum of two unknown values.");
             throw new InsufficientValuesException();
         }
 
 
         nullValueLoop:
-        for(String nullValueKey : nullvalues){
+        for (String nullValueKey : nullvalues) {
+
+            System.out.print("Starting outerloop, iterating nullvalue " + nullValueKey + "\n");
 
             EquationLoop:
-            for(Equation e : registeredEquations){
-
+            for (Equation e : registeredEquations) {
 
 
                 // Flag to keep ` of if we have any unknowns yet
@@ -118,21 +119,23 @@ public class Main {
                 // Iterate through the values required
                 // If the loop does not exit, the equation only requires one of our null values and the program continues.
                 boolean containsUnknown = false;
-                for(String s : e.getRequiredChars()){
+                for (String s : e.getRequiredChars()) {
 
-                    containsUnknown = s==nullValueKey ? true : false;
+                    if (s == nullValueKey) {
+                        containsUnknown = true;
+                    }
 
                     // If we have a null value and havent yet had one, all is good
-                    if(nullvalues.contains(s) && foundUnknown == false && values.get(s)==null){
+                    if (nullvalues.contains(s) && foundUnknown == false && values.get(s) == null) {
                         foundUnknown = true;
 
-                    // We have more than one null value, abort
-                    } else if(foundUnknown && nullvalues.contains(s) && values.get(s)==null){
+                        // We have more than one null value, abort
+                    } else if (foundUnknown == true && nullvalues.contains(s) && values.get(s) == null) {
                         continue EquationLoop;
                     }
                 }
 
-                if(containsUnknown == false){
+                if (containsUnknown == false) {
                     continue EquationLoop;
                 }
 
@@ -142,12 +145,13 @@ public class Main {
 
                 values.put(nullValueKey, returnValue);
 
+
+                System.out.print("Calculated value  " + nullValueKey + " to " + values.get(nullValueKey) + "\n");
                 break EquationLoop;
             }
             continue nullValueLoop;
         }
     }
-
     // We use an interface to keep the equations together and easily iterate through multiple classes, as well as for readabillity.
     public interface Equation {
         String[] getRequiredChars();
