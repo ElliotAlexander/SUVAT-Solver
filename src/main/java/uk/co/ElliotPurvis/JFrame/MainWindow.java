@@ -20,9 +20,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private final JTextPane subtitle, postTitle, indiciesText;
     private final JButton calculateButton, resetButton;
     private final JTextField accelerationText, velocityText, initialVText, timeText, distanceText;
-
     private final Main main;
-
     private static String SYSTEM_FONT;
 
     public MainWindow(Main main) {
@@ -33,7 +31,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         SYSTEM_FONT = new JLabel().getFont().getFontName();
 
-        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
 
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
