@@ -23,7 +23,7 @@ public class ErrorWindow extends JFrame implements ActionListener {
 
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
-        setSize(600, 100);
+        setSize(600, 125);
         setVisible(true);
 
         SYSTEM_FONT = new JLabel().getFont().getFontName();
@@ -42,6 +42,7 @@ public class ErrorWindow extends JFrame implements ActionListener {
         closeButton = new JButton("Close");
         closeButton.addActionListener(this);
         closeButton.setVisible(true);
+        //closeButton.setMargin(new Insets(0,0,20,0));
         add(closeButton);
 
     }
@@ -50,6 +51,5 @@ public class ErrorWindow extends JFrame implements ActionListener {
         if(e.getSource() == closeButton){
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         }
-
     }
 }
