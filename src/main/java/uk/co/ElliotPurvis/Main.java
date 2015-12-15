@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Main {
+class Main {
 
 
     MainWindow mainWindow;
@@ -20,35 +20,8 @@ public class Main {
 
     private Main main;
 
-    public static void main(String[] args) {
-        Main mainClass = new Main();
-        mainClass.setup();
-    }
-
-    /**
-     * @param window
-     * @return @param
-     * Defines default settings for a new window.
-     */
-    private Window setupDefaultWindow(JFrame window){
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-
-        // Define size of the display we're running on
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
-        // Centre the window on the display
-        window.setLocation((int) dim.getWidth() / 2 - (window.getWidth() / 2), (int) dim.getHeight() / 2 - (window.getHeight() / 2));
-        window.setVisible(true);
-        return window;
-    }
-
-    /**
-     * Non static main
-     *
-     */
-    private void setup() {
-
+    // Non-instantiable constructor.
+    private Main(){
         values = new HashMap<String, Double>();
         values.put("V", null);
         values.put("A", null);
@@ -72,6 +45,25 @@ public class Main {
             }
         });
     }
+
+    public static void main(String[] args) {
+        new Main();
+    }
+
+    // Defines settings for new window.
+    private Window setupDefaultWindow(JFrame window){
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+
+        // Define size of the display we're running on
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Centre the window on the display
+        window.setLocation((int) dim.getWidth() / 2 - (window.getWidth() / 2), (int) dim.getHeight() / 2 - (window.getHeight() / 2));
+        window.setVisible(true);
+        return window;
+    }
+
 
     public void newErrorWindow(String title, String errorMessage){
         ErrorWindow errorWindow = new ErrorWindow(title,errorMessage);
