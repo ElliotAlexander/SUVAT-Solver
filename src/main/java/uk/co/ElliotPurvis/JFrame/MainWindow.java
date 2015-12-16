@@ -31,7 +31,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         SYSTEM_FONT = new JLabel().getFont().getFontName();
 
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
 
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
