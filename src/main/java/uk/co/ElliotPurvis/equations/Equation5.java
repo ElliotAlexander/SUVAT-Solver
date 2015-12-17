@@ -12,12 +12,9 @@ public class Equation5 implements Main.Equation {
     /**
      *  S = vt - 1/2at^2
      **/
-
     public String[] getRequiredChars() {
         return new String[]{"V", "T", "S", "A"};
     }
-
-
 
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
 

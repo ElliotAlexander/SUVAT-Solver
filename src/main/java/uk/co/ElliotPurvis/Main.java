@@ -40,7 +40,8 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 mainWindow = new MainWindow(main);
-                setupDefaultWindow(mainWindow);
+                Window w = setupDefaultWindow(mainWindow);
+                w.setVisible(true);
             }
         });
     }
@@ -59,7 +60,6 @@ public class Main {
 
         // Centre the window on the display
         window.setLocation((int) dim.getWidth() / 2 - (window.getWidth() / 2), (int) dim.getHeight() / 2 - (window.getHeight() / 2));
-        window.setVisible(true);
         return window;
     }
 
@@ -102,8 +102,6 @@ public class Main {
 
             EquationLoop:
             for (Equation e : registeredEquations) {
-
-
                 // Flag to keep ` of if we have any unknowns yet
                 boolean foundUnknown = false;
 
@@ -132,6 +130,11 @@ public class Main {
 
 
                 Double returnValue = e.calculate(values, nullValueKey);
+                if(returnValue.toString().length() > 5){
+                    String tempShorteningString = returnValue.toString();
+                    tempShorteningString = tempShorteningString.substring(0,5);
+                    returnValue = Double.parseDouble(tempShorteningString);
+                }
 
 
                 values.put(nullValueKey, returnValue);

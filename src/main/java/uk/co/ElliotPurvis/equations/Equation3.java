@@ -13,14 +13,11 @@ public class Equation3 implements Main.Equation {
     /**
      *  s = ((u+v)/2 )* t
      **/
-
-
     public String[] getRequiredChars() {
         return new String[]{"V", "U", "S", "T"};
     }
 
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
-
         if(nullValue == "V") {
             return ((2 * passedValues.get("S")) / passedValues.get("T")) - passedValues.get("U");
         } else if(nullValue == "U"){

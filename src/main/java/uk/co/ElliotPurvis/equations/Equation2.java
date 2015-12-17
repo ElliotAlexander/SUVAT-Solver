@@ -14,19 +14,11 @@ public class Equation2 implements Main.Equation {
      *
      * @return
      */
-
-
-
-
-
     public String[] getRequiredChars() {
         return new String[]{"S", "U", "A", "T"};
     }
 
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
-
-
-
         if(nullValue == "S") {
             return ((passedValues.get("U") * passedValues.get("T")) + (0.5 * passedValues.get("A") * (passedValues.get("T") * passedValues.get("T"))));
         } else if(nullValue == "U"){
@@ -40,13 +32,11 @@ public class Equation2 implements Main.Equation {
              * We can't  accept a negative time
              */
             double tempValue;
-
             tempValue = (-passedValues.get("U") + Math.sqrt((passedValues.get("U") * passedValues.get("U")) + (2 * passedValues.get("S")))) / passedValues.get("A");
 
             if(tempValue < 0){
                 tempValue = (-passedValues.get("U") - Math.sqrt((passedValues.get("U") * passedValues.get("U")) + (2 * passedValues.get("S")))) / passedValues.get("A");
             }
-
             return tempValue;
         }
         return null;

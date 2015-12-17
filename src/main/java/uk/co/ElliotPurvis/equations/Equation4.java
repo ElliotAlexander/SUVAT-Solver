@@ -8,9 +8,6 @@ import java.util.HashMap;
  * Created by Elliot on 04/09/2015.
  */
 public class Equation4 implements Main.Equation {
-
-
-
     /**
      *  V^2 = U^2 + 2as
      **/
@@ -19,10 +16,7 @@ public class Equation4 implements Main.Equation {
         return new String[]{"V", "U", "S", "A"};
     }
 
-
     public Double calculate(HashMap<String, Double> passedValues, String nullValue) {
-
-
         if(nullValue == "V") {
             return Math.sqrt((passedValues.get("U")*passedValues.get("U")) + (2 * passedValues.get("A") * passedValues.get("S")) );
         } else if(nullValue == "U"){

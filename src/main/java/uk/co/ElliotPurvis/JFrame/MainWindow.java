@@ -134,6 +134,10 @@ public class MainWindow extends JFrame implements ActionListener {
             tempValues.put("T", timeText.getText().toString());
             tempValues.put("A", accelerationText.getText().toString());
 
+            for(String key : tempValues.keySet()){
+                System.out.print(key + " : " +  tempValues.get(key) + "\n");
+            }
+
 
             HashMap<String, Double> finalValues = new HashMap<String, Double>();
 
@@ -167,7 +171,7 @@ public class MainWindow extends JFrame implements ActionListener {
         return textArea;
     }
 
-    public void updateTextBoxes(){
+    public void updateTextBoxes() {
         velocityText.setText(Double.toString(main.getValue("V")));
         initialVText.setText(Double.toString(main.getValue("U")));
         distanceText.setText(Double.toString(main.getValue("S")));

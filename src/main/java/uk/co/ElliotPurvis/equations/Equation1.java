@@ -13,7 +13,6 @@ public class Equation1 implements Main.Equation {
     /**
      *  V = U + AT
      **/
-
     public String[] getRequiredChars() {
         return new String[]{"V", "U", "A", "T"};
     }
