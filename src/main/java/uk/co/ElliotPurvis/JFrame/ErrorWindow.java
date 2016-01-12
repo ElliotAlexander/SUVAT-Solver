@@ -12,21 +12,21 @@ import java.awt.event.WindowEvent;
 public class ErrorWindow extends JFrame implements ActionListener {
 
     private final JTextPane errorLabel;
-    private static String SYSTEM_FONT;
-    private JButton closeButton;
-    private final Window w;
+    private static final String SYSTEM_FONT = new JLabel().getFont().getFontName();
+    private final JButton closeButton;
+
+
+
 
     public ErrorWindow(String title, String errorMessage){
-        super("Error! " + title);
 
-        w = this;
+        this.setName(title);
 
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
         setSize(600, 125);
         setVisible(true);
 
-        SYSTEM_FONT = new JLabel().getFont().getFontName();
 
         errorLabel = new JTextPane();
         // Order of arguements = new Insets(Top Inset, left Inset, bottom Inset, right);
@@ -44,6 +44,16 @@ public class ErrorWindow extends JFrame implements ActionListener {
         closeButton.setVisible(true);
         //closeButton.setMargin(new Insets(0,0,20,0));
         add(closeButton);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        setResizable(false);
+
+        // Define size of the display we're running on
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Centre the window on the display
+        setLocation((int) dim.getWidth() / 2 - (getWidth() / 2), (int) dim.getHeight() / 2 - (getHeight() / 2));
 
     }
 
