@@ -21,19 +21,22 @@ public class Main {
     private Main main;
 
     private Main(){
-        values = new HashMap<String, Double>();
-        values.put("V", null);
-        values.put("A", null);
-        values.put("S", null);
-        values.put("U", null);
-        values.put("T", null);
+        values = new HashMap<String, Double>() {{
+            put("V", null);
+            put("A", null);
+            put("S", null);
+            put("U", null);
+            put("T", null);
+        }};
 
-        registeredEquations = new ArrayList<Equation>();
-        registeredEquations.add(new Equation1());
-        registeredEquations.add(new Equation2());
-        registeredEquations.add(new Equation3());
-        registeredEquations.add(new Equation4());
-        registeredEquations.add(new Equation5());
+
+        registeredEquations = new ArrayList<Equation>() {{
+            add(new Equation1());
+            add(new Equation2());
+            add(new Equation3());
+            add(new Equation4());
+            add(new Equation5());
+        }};
 
         main = this;
 
@@ -41,8 +44,6 @@ public class Main {
             public void run() {
                 mainWindow = MainWindow.INSTANCE;
                 mainWindow.SingletonMain(main);
-                Window w = setupDefaultWindow(mainWindow);
-                w.setVisible(true);
             }
         });
     }
@@ -51,26 +52,10 @@ public class Main {
         new Main();
     }
 
-    // Defines settings for new window.
-    private Window setupDefaultWindow(JFrame window){
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-
-        // Define size of the display we're running on
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
-        // Centre the window on the display
-        window.setLocation((int) dim.getWidth() / 2 - (window.getWidth() / 2), (int) dim.getHeight() / 2 - (window.getHeight() / 2));
-        return window;
-    }
 
 
     public void newErrorWindow(String title, String errorMessage){
-        ErrorWindow errorWindow = new ErrorWindow(title,errorMessage);
-        setupDefaultWindow(errorWindow);
-        // Override defaults set in setupDefaultWindow, we want to close only this window on exit.
-        errorWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        new ErrorWindow(title, errorMessage) ;
     }
 
 
