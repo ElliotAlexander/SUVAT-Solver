@@ -39,7 +39,8 @@ public class Main {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                mainWindow = new MainWindow(main);
+                mainWindow = MainWindow.INSTANCE;
+                mainWindow.SingletonMain(main);
                 Window w = setupDefaultWindow(mainWindow);
                 w.setVisible(true);
             }
